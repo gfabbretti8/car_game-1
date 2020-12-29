@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Road::Road() :car(n_rows, n_cols){
+Road::Road() :car(n_rows, n_cols){ //Constructor
 
   for(int i=0; i<n_rows; i++){
     for(int j=0; j<n_cols; j++){
@@ -40,15 +40,17 @@ char Road::spawn_obj(){
 
   int rand_number = rand()%1000;
 
-  if(rand_number < 1){
+  if(rand_number == 0){
     return 'G';
+  } else if(rand_number == 1){
+    return 'N';
   } else {
     return ' ';
   }
 }
 
 void Road::print_map(){
-  cout << "\033[0;0H";
+  cout << "\033[0;0H"; // character that position cursor at row 0 col 0
 
   for(int i=0; i<n_rows; i++){
     cout<<"#";
@@ -61,7 +63,7 @@ void Road::print_map(){
 
 void Road::print_info(){
   cout << "\033[0;" + to_string(n_cols+5) + "H";
-  cout<<" Fuel level: "<< car.get_fuel_level() << "\033[K";
+  cout<<" Fuel level: "<< car.get_fuel_level() << "\033[K"; //delete the rest of the line
 }
 
 void Road::car_consume_fuel(){

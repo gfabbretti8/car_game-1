@@ -9,7 +9,7 @@ static struct termios old, current;
 /* Initialize new terminal i/o settings */
 void initTermios()
 {
-  fcntl(0, F_SETFL, O_NONBLOCK);
+  fcntl(0, F_SETFL, O_NONBLOCK); // makes the getchar non-blocking
   tcgetattr(0, &old); /* grab old terminal i/o settings */
   current = old; /* make new settings same as old settings */
   current.c_lflag &= ~ICANON; /* disable buffered i/o */
@@ -24,10 +24,8 @@ void resetTermios()
 }
 
 /* Read 1 character without echo */
-char ciao()
+char get_input()
 {
   char ch = getchar();
-  std::cin.clear();
-  std::cout.clear();
   return ch;
 }

@@ -13,14 +13,14 @@ Car::Car(int x, int y){
 
   position_y[1] = y/2;
   position_y[0] = position_y[1]-1;
-  position_y[2] = position_y[1]+2;
+  position_y[2] = position_y[1]+1;
 
   bound_y = y;
   fuel = 1000;
 }
 
 void Car::move(){
-  char move = ciao();
+  char move = get_input();
 
   if(move == 'a' && position_y[0] > 0){
     for(int i=0; i<sizeof(position_y)/sizeof(position_y[0]); i++){
@@ -40,5 +40,4 @@ void Car::print(){
         cout << '*';
       }
   }
-  cout.flush();
 }

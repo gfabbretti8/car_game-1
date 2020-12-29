@@ -8,11 +8,11 @@
 
 int main(){
 
-  initTermios();
+  initTermios(); //setup of the terminal
   srand( (unsigned) time(0));
 
   Road road;
-  unsigned int time = 100000;
+  unsigned int time = 100000; // 1/10 of a sec
 
   while(1){
     road.move();

@@ -3,6 +3,6 @@
 
 void initTermios();
 void resetTermios();
-char ciao();
+char get_input();
 
 #endif
