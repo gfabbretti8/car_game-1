@@ -17,6 +17,7 @@ Car::Car(int x, int y){
 
   bound_y = y;
   fuel = 1000;
+  life= 1000;
 }
 
 void Car::move(){
