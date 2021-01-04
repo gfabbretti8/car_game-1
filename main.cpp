@@ -19,6 +19,8 @@ int main(){
     road.print();
     road.car.move();
     road.car_consume_fuel();
+    road.car_add_fuel();
+    road.car_consume_life();
     road.car.print();
     road.reposition_cursor();
     usleep(time);

@@ -64,11 +64,34 @@ void Road::print_map(){
 void Road::print_info(){
   cout << "\033[0;" + to_string(n_cols+5) + "H";
   cout<<" Fuel level: "<< car.get_fuel_level() << "\033[K"; //delete the rest of the line
+  cout<<"Life:"<<car.get_life()<<"\033[K";
 }
 
 void Road::car_consume_fuel(){
   car.consume_fuel();
-  if(car.get_fuel_level() == 0){
+  if(car.get_fuel_level() == 0){// non so perchè ma va sotto lo zero
     cout << "YOU LOST!\n";
+  }
+}
+
+
+void Road::car_add_fuel(){// sono palesemente sbagliate 
+   for(int i=0; i<n_rows; i++){
+    for(int j=0; j<n_cols; j++){
+     if (matrix[i][j]=='G'){
+        car.add_fuel();
+      } 
+    }
+  }
+}                 
+
+
+void Road::car_consume_life(){
+  for(int i=0; i<n_rows; i++){
+    for(int j=0; j<n_cols; j++){
+     if (matrix[i][j]=='N'){
+        car.consume_life();
+      }
+    }
   }
 }

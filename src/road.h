@@ -14,6 +14,8 @@ public:
   inline void print(){ print_map(); print_info(); }
   void reposition_cursor();
   void car_consume_fuel();
+  void car_add_fuel();
+  void car_consume_life();
   void move();
   char spawn_obj();
   void print_map();
