@@ -15,7 +15,7 @@ Car::Car(int x, int y){
   position_y[0] = position_y[1]-1;
   position_y[2] = position_y[1]+1;
 
-  bound_y = y;
+  bound_y = y-1;
   fuel = 1000;
 }
 
