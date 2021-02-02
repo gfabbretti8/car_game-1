@@ -69,20 +69,28 @@ void Road::print_info(){
 
 void Road::car_consume_fuel(){
   car.consume_fuel();
-  if(car.get_fuel_level() == 0){// non so perchè ma va sotto lo zero
+  if(car.get_fuel_level() == 0){
     cout << "YOU LOST!\n";
+    exit(1);
   }
 }
 
 
-void Road::car_add_fuel(){// sono palesemente sbagliate 
-   for(int i=0; i<n_rows; i++){
-    for(int j=0; j<n_cols; j++){
-     if (matrix[i][j]=='G'){
-        car.add_fuel();
-      } 
-    }
-   }
+void Road::car_add_fuel(){ // sono palesemente sbagliate 
+  //  for(int i=0; i<n_rows; i++){
+  //   for(int j=0; j<n_cols; j++){
+  //    if (matrix[i][j]=='G'){
+  //       car.add_fuel();
+  //     } 
+  //   }
+  //  }
+  
+  // ALGO:
+  //  1. Get car_position
+  //  2. Get G_positions
+  //  3. If car_position in G_positions
+  //       then carr.add_fuel()
+
 }                 
 
 
