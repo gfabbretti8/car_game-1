@@ -97,7 +97,6 @@ void Road::inc_dec_level(){
   }
 }
 
-
 void Road::car_add_fuel(){  
   int car_position_x = car.get_position_x();
   int car_position_y = car.get_position_y();
@@ -109,7 +108,6 @@ void Road::car_add_fuel(){
   } 
   
 }
-
 
 void Road::car_consume_life(){ 
   int car_position_x = car.get_position_x();
