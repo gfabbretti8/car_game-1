@@ -15,6 +15,11 @@ Road::Road() :car(n_rows, n_cols){ //Constructor
   car = Car(n_rows, n_cols);
 }
 
+void Road::init_game(){
+  points = 0;
+  level = 1;
+}
+
 void Road::reposition_cursor(){
   cout << "\033[" + to_string(n_rows+2) + ";0H";
   cout.flush();
@@ -38,11 +43,12 @@ void Road::move(){
 
 char Road::spawn_obj(){
 
-  int rand_number = rand()%1000;
-
-  if(rand_number == 0){
+  bool appears_G = (rand() % 10000) < 4;
+  bool appears_N = (rand() % 10000) < level*2; // Each level increase probability a Nail appears 
+  
+  if(appears_G){
     return 'G';
-  } else if(rand_number == 1){
+  } else if(appears_N){
     return 'N';
   } else {
     return ' ';
@@ -64,54 +70,55 @@ void Road::print_map(){
 void Road::print_info(){
   cout << "\033[0;" + to_string(n_cols+5) + "H";
   cout << " Fuel level: "<< car.get_fuel_level() << "\033[K"; //delete the rest of the line
-  cout << " Life:"<< car.get_life() <<"\033[K";
+  cout << " Life: " << car.get_life() << "\033[K";
+  cout << " Points: " << points << "\033[K"; 
+  cout << " Level: " << level << "\033[K";
 }
 
 void Road::car_consume_fuel(){
   car.consume_fuel();
   if(car.get_fuel_level() == 0){
-    cout << "YOU LOST!\n";
-    exit(1);
+    cout << " | No Fuel --> YOU LOST!\n";
+    game_over();
+  }
+}
+
+void Road::add_level(){
+  if (points%100 == 0){
+    level += 1;
+    cout << "New Level!!\n";
   }
 }
 
 
-void Road::car_add_fuel(){ // sono palesemente sbagliate 
-  //  for(int i=0; i<n_rows; i++){
-  //   for(int j=0; j<n_cols; j++){
-  //    if (if car_positon == 'G'){
-  //       car.add_fuel();
-  //     } 
-  //   }
-  //  }
-  
-  // ALGO:
-  //  1. Get car_position
-  //  2. Get G_positions
-  //  3. If car_position in G_positions
-  //       then carr.add_fuel()
-
+void Road::car_add_fuel(){  
   int car_position_x = car.get_position_x();
   int car_position_y = car.get_position_y();
+
+  for(int pos_y=car_position_y; pos_y<car_position_y+3; pos_y++){
+    if (matrix[car_position_x][pos_y] == 'G'){
+      car.add_fuel();
+    }
+  } 
   
-  for(int i=car_position_x; i<car_position_x+3; i++){
-    if (matrix[car_position_x][car_position_y] == 'G'){
-        car.add_fuel();
-    } 
-  }
 }
 
 
-void Road::car_consume_life(){  // Not Working
+void Road::car_consume_life(){ 
   int car_position_x = car.get_position_x();
   int car_position_y = car.get_position_y();
   
-  for(int i=car_position_x; i<car_position_x+3; i++){
-    if (matrix[car_position_x][car_position_y] == 'N'){
+  for(int pos_y=car_position_y; pos_y<car_position_y+3; pos_y++){
+    if (matrix[car_position_x][pos_y] == 'N'){
         car.consume_life();
     }
     if (car.get_life() == 0){
       cout << "Life Finished - Game Over!!";
+      game_over();
     }
   }
+}
+
+void Road::game_over(){
+  exit(1);
 }

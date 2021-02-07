@@ -14,13 +14,17 @@ int main(){
   Road road;
   unsigned int time = 100000; // 1/10 of a sec
 
+  road.init_game();
+
   while(1){
     road.move();
     road.print();
     road.car.move();
     road.car_consume_fuel();
-    road.car_add_fuel();
     road.car_consume_life();
+    road.car_add_fuel();
+    road.add_points();
+    road.add_level();
     road.car.print();
     road.reposition_cursor();
     usleep(time);
