@@ -5,6 +5,7 @@ class Road{
 protected:
   static const int n_rows = 30;
   static const int n_cols = 80;
+  int nails_taken;
   int points;
   int level;
   char matrix[n_rows][n_cols];
@@ -23,8 +24,9 @@ public:
   void print_map();
   void print_info();
   void init_game();
-  void add_level();
+  void inc_dec_level();
   void game_over();
+  inline void get_nail(){nails_taken+=1;}
   inline void add_points(){points += 1;}
   inline void remove_points(){points -= 10;}
   

@@ -15,8 +15,8 @@ class Car{
   inline int* get_pos_x(){return position_x;}
   inline int* get_pos_y(){return position_y;}
 
-  inline void add_fuel(){fuel+=100;}
-  inline void consume_life(){life-=100;}
+  inline void add_fuel(){fuel+=50;}
+  inline void consume_life(){life-=50;}
   inline int get_life(){return life;}
   void print();
   void move();

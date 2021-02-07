@@ -16,6 +16,7 @@ Road::Road() :car(n_rows, n_cols){ //Constructor
 }
 
 void Road::init_game(){
+  nails_taken = 0;
   points = 0;
   level = 1;
 }
@@ -83,10 +84,16 @@ void Road::car_consume_fuel(){
   }
 }
 
-void Road::add_level(){
-  if (points%100 == 0){
+void Road::inc_dec_level(){
+  if (points%250 == 0){
     level += 1;
     cout << "New Level!!\n";
+  }
+  if (nails_taken%4 == 0){
+    if (level > 1){
+      level -= 1;
+      cout << "Previous Level!!\n";
+    }
   }
 }
 
@@ -111,6 +118,7 @@ void Road::car_consume_life(){
   for(int pos_y=car_position_y; pos_y<car_position_y+3; pos_y++){
     if (matrix[car_position_x][pos_y] == 'N'){
         car.consume_life();
+        get_nail();
     }
     if (car.get_life() == 0){
       cout << "Life Finished - Game Over!!";

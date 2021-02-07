@@ -24,7 +24,7 @@ int main(){
     road.car_consume_life();
     road.car_add_fuel();
     road.add_points();
-    road.add_level();
+    road.inc_dec_level();
     road.car.print();
     road.reposition_cursor();
     usleep(time);
