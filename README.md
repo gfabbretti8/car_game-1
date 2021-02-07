@@ -4,7 +4,7 @@ C++ car game for academic purpose.
 ## Getting Started
 Clone this repository
 ```
-git clone https://github.com/gfabbretti8/car_game.git
+git clone https://github.com/micolll/car_game.git
 ```
 
 Change into it
